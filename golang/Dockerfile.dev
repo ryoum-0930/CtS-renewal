@@ -1,0 +1,15 @@
+FROM golang:1.15.7-alpine3.13
+
+SHELL ["/bin/ash", "-c"]
+WORKDIR /go/src/app
+COPY ./app ./
+EXPOSE 8080
+ENV GO111MODULE=on
+
+RUN apk add --no-cache alpine-sdk
+
+# Hot Reload
+RUN go get github.com/pilu/fresh
+
+# libraries
+RUN go get github.com/labstack/echo

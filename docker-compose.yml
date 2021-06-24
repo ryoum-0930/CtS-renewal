@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+    app:
+        container_name: go-app
+        build:
+            context: ./golang
+            dockerfile: ./Dockerfile.dev
+        ports:
+            - 8080:8080
+        volumes:
+            - ./golang/app:/go/src/app:cached
+        command: /bin/ash -c "while sleep 1000; do :; done"
+
+    db:
+        container_name: mysql-db
+        build:
+            context: ./mysql
+            dockerfile: ./Dockerfile.dev
+        ports:
+            - 3306:3306
+        volumes:
+            - ./mysql/data:/var/lib/mysql
+            - ./mysql/log:/var/log/mysql
+        environment: 
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: test
+            MYSQL_PASSWORD: test
+        
