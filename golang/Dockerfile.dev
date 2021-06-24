@@ -13,3 +13,5 @@ RUN go get github.com/pilu/fresh
 
 # libraries
 RUN go get github.com/labstack/echo
+
+CMD ["fresh -c .fresh.conf"]
