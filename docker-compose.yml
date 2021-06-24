@@ -22,8 +22,5 @@ services:
         volumes:
             - ./mysql/data:/var/lib/mysql
             - ./mysql/log:/var/log/mysql
-        environment: 
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_USER: test
-            MYSQL_PASSWORD: test
-        
+        env_file: 
+            - ./mysql/db-user.env
