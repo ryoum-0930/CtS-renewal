@@ -5,6 +5,7 @@ WORKDIR /go/src/app
 COPY ./app ./
 EXPOSE 8080
 ENV GO111MODULE=on
+RUN go mod download
 
 RUN apk add --no-cache alpine-sdk
 
@@ -13,5 +14,6 @@ RUN go get github.com/pilu/fresh
 
 # libraries
 RUN go get github.com/labstack/echo
+RUN go get -v golang.org/x/tools/gopls
 
 CMD ["fresh -c .fresh.conf"]

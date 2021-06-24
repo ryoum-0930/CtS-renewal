@@ -6,6 +6,9 @@ services:
         build:
             context: ./golang
             dockerfile: ./Dockerfile.dev
+        networks:
+            - frontend
+            - backend
         ports:
             - 8080:8080
         volumes:
@@ -17,6 +20,8 @@ services:
         build:
             context: ./mysql
             dockerfile: ./Dockerfile.dev
+        networks: 
+            - backend
         ports:
             - 3306:3306
         volumes:
@@ -24,3 +29,17 @@ services:
             - ./mysql/log:/var/log/mysql
         env_file: 
             - ./mysql/db-user.env
+
+networks:
+    frontend:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 192.168.10.0/24
+    backend:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 192.168.20.0/24
