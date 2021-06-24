@@ -5,6 +5,7 @@ COPY ./app ./
 ENV GO111MODULE=on
 RUN go mod download
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags=-w -s" -o /go/bin/app
+CMD ["export GO_ENV=/go/src/app"]
 
 FROM alpine:latest
 

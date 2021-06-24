@@ -9,20 +9,16 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"
-)
 
-type tsts struct {
-	ID   int
-	Name string
-	Abc  string
-}
+	"./assets"
+)
 
 func main() {
 	db := sqlConnect()
-	db.AutoMigrate(&tsts{})
+	db.AutoMigrate(&assets.Tsts{})
 	defer db.Close()
 
-	db.Create(&tsts{
+	db.Create(&assets.Tsts{
 		ID:   4,
 		Name: "ddd",
 		Abc:  "aiu",

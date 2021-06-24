@@ -6,6 +6,7 @@ COPY ./app ./
 EXPOSE 8080
 ENV GO111MODULE=on
 RUN go mod download
+CMD ["export GO_ENV=/go/src/app"]
 
 RUN apk add --no-cache alpine-sdk
 
